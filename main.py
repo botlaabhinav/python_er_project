@@ -11,8 +11,7 @@ def main():
     if uploaded_file:
         metadata = parse_excel_metadata(uploaded_file)
         st.success("Excel file parsed successfully!")
-        for table_name, table in metadata.items():
-            st.write(f"Table {table_name} with {len(table.columns)} columns loaded.")
+
 
         theme_choice = st.sidebar.selectbox(
             'Theme', ["Common Gray", "Blue Navy"], index=0)
@@ -23,6 +22,7 @@ def main():
         if st.sidebar.button("Generate ER Diagram"):
             theme = Theme.get_theme(theme_choice)
             er_diagram = create_graph(metadata, theme, show_columns, show_types, use_upper_case)
+            print(er_diagram)
             st.graphviz_chart(er_diagram)
 
         if st.sidebar.button("Generate DDL"):

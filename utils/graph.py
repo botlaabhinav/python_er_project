@@ -6,9 +6,7 @@ def create_graph(tables, theme, show_columns, show_types, use_upper_case):
 
     # Debug: Check how many tables we are processing
     #st.write(f"Processing {len(tables)} tables for ER diagram...")
-
     for table_name, table in tables.items():
-        
         s += table.getDotShape(theme, show_columns, show_types, use_upper_case)
     
     s += "\n"

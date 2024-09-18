@@ -3,7 +3,7 @@ class Table:
     def __init__(self, name, comment):
         self.name = name
         self.comment = comment if comment is not None and comment != 'None' else ''
-        self.label = f"n{len(self.name)}"
+        self.label = f"n_{self.name.replace(' ', '_')}"
 
         self.columns = []           # list of all columns
         self.uniques = {}           # dictionary with UNIQUE constraints, by name + list of columns
@@ -138,6 +138,7 @@ class Table:
             arrow = "" if fk1.ispk and len(self.pks) == len(fk1.fkof.table.pks) else ' arrowtail="crow"'
             s += (f'  {self.label} -> {fk1.fkof.table.label}'
                 + f' [ penwidth="{theme.penwidth}" color="{theme.pencolor}"{dashed}{arrow} ]\n')
+           
         return s
 
 class Column:
